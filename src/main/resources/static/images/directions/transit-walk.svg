@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="540" viewBox="0 0 920 540" role="img" aria-labelledby="title desc">
+<title id="title">정성드림방문요양센터 주변 도보 약도</title>
+<desc id="desc">돌곶이역에서 돌곶이로를 거쳐 약 15분, 신이문역에서 한천로 방면으로 약 13분, 석관동코오롱아파트 정류장에서 약 4~6분. 화살표는 돌곶이로8길의 센터를 향합니다.</desc>
+<defs>
+  <pattern id="blocks" width="88" height="64" patternUnits="userSpaceOnUse" patternTransform="rotate(-7)">
+    <rect width="88" height="64" fill="#f3f0e9"/>
+    <rect x="6" y="6" width="35" height="49" rx="4" fill="#e7e4db"/>
+    <rect x="45" y="6" width="36" height="23" rx="4" fill="#e8e5dd"/>
+    <rect x="45" y="33" width="36" height="22" rx="4" fill="#e8e5dd"/>
+  </pattern>
+  <path id="roads" d="M-30 90L380 52 940 12 M121 -30L183 300 196 550 M-20 333L184 300 624 257 949 230 M690 -25L624 257 677 547 M639 344L934 368"/>
+</defs>
+<rect width="920" height="540" fill="url(#blocks)"/>
+<g fill="#e2ecd9" stroke="#cddac4"><rect x="697" y="120" width="173" height="93" rx="10"/><rect x="236" y="336" width="333" height="146" rx="12" fill="#e2e6dd"/></g>
+<use href="#roads" fill="none" stroke="#d1cdc4" stroke-width="37"/><use href="#roads" fill="none" stroke="#fffefa" stroke-width="33"/>
+<g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="8 6">
+  <path d="M143 99L183 296 443 271" stroke="#a85514"/>
+  <path d="M835 357L643 340 626 258 463 274" stroke="#265ca0"/>
+  <path d="M651 389L632 271 461 285" stroke="#147466"/>
+</g>
+<g fill="none" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+  <path d="m153 190 9 10 4-13 M289 280l12 5-10 8 M399 269l12 5-10 8" stroke="#a85514"/>
+  <path d="m758 345-12 5 11 8 M631 308l5-12 8 10 M550 258l-12 9 14 4" stroke="#265ca0"/>
+  <path d="m637 335 4-13 9 10 M515 273l-12 8 13 5" stroke="#147466"/>
+</g>
+<g font-family="Apple SD Gothic Neo,Malgun Gothic,sans-serif" font-size="19" fill="#39483f">
+  <text x="358" y="58">화랑로</text>
+  <text x="112" y="244" transform="rotate(-90 112 244)">돌곶이로</text>
+  <text x="258" y="317" transform="rotate(-6 258 317)">돌곶이로8길</text>
+  <text x="657" y="181" transform="rotate(-78 657 181)">한천로</text>
+  <text x="783" y="176" text-anchor="middle">석관중학교</text>
+  <text x="402" y="406" text-anchor="middle">래미안아트리치</text>
+  <g fill="#234e3b"><rect x="302" y="151" width="258" height="76" rx="12"/><path d="M441 224l12 38 10-38Z"/></g>
+  <circle cx="453" cy="275" r="9" fill="#234e3b" stroke="white" stroke-width="3"/>
+  <text x="323" y="181" fill="white" font-size="23" font-weight="bold">정성드림방문요양센터</text>
+  <text x="323" y="210" fill="#e5f3e5">돌곶이로8길 47 · 2층</text>
+  <circle cx="143" cy="99" r="8" fill="white" stroke="#a85514" stroke-width="4"/>
+  <rect x="21" y="14" width="235" height="66" rx="10" fill="#fffaf3" stroke="#a85514"/>
+  <text x="37" y="42" fill="#854006" font-weight="bold">6호선 돌곶이역</text><text x="37" y="67">6번 출구 · 약 15분</text>
+  <circle cx="835" cy="357" r="8" fill="white" stroke="#265ca0" stroke-width="4"/>
+  <rect x="685" y="374" width="223" height="68" rx="10" fill="#f3f8ff" stroke="#265ca0"/>
+  <text x="702" y="403" fill="#234d86" font-weight="bold">1호선 신이문역</text><text x="702" y="429">1번 출구 · 약 13분</text>
+  <rect x="643" y="381" width="16" height="16" rx="3" fill="white" stroke="#147466" stroke-width="4"/>
+  <path d="M650 399l-26 22" stroke="#147466" stroke-width="2"/>
+  <rect x="440" y="421" width="232" height="72" rx="10" fill="#f2faf7" stroke="#147466"/>
+  <text x="454" y="450" fill="#115d52" font-weight="bold">석관동코오롱아파트</text><text x="454" y="477">08197 · 약 4~6분</text>
+</g></svg>
