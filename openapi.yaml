@@ -1,0 +1,248 @@
+openapi: 3.1.0
+info:
+  title: 국내 투자정보 API
+  version: 1.0.0
+  description: 국내 투자자를 위한 시장 요약과 상장기업 기본정보 조회 계약입니다.
+servers:
+  - url: http://localhost:8087/api/v1
+paths:
+  /status:
+    get:
+      operationId: getStatus
+      summary: 애플리케이션 응답 확인
+      responses:
+        '200':
+          description: 애플리케이션이 요청에 응답합니다.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [status]
+                properties:
+                  status: { const: ok }
+              example: { status: ok }
+  /market-summary:
+    get:
+      operationId: getMarketSummary
+      summary: 지수, 환율, 금 선물, 기준금리의 최신 공표값 조회
+      responses:
+        '200':
+          description: 하나 이상의 저장된 공표값이 있습니다. 공표값이 없는 항목은 unavailable입니다.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MarketSummary'
+        '503':
+          $ref: '#/components/responses/DataUnavailable'
+  /companies:
+    get:
+      operationId: listCompanies
+      summary: 국내 상장기업 목록 또는 검색 결과 조회
+      parameters:
+        - name: query
+          in: query
+          description: 생략 시 전체 목록. 앞뒤 공백을 제거한 기업명 부분 일치 또는 6자리 종목코드 완전 일치입니다.
+          schema: { type: string, minLength: 1, maxLength: 100 }
+        - name: page
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 10000, default: 1 }
+        - name: size
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 20 }
+      responses:
+        '200':
+          description: corpCode 오름차순으로 정렬합니다. 검색 결과가 없거나 마지막 페이지를 넘으면 items는 빈 배열입니다.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyPage'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '503':
+          $ref: '#/components/responses/DataUnavailable'
+  /companies/{corpCode}:
+    get:
+      operationId: getCompany
+      summary: 상장기업 기본정보 조회
+      parameters:
+        - name: corpCode
+          in: path
+          required: true
+          schema:
+            $ref: '#/components/schemas/CorpCode'
+      responses:
+        '200':
+          description: 기업 기본정보
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Company'
+        '400':
+          $ref: '#/components/responses/InvalidRequest'
+        '404':
+          description: 등록된 상장기업이 없습니다.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example: { type: 'about:blank', title: Not Found, status: 404, code: COMPANY_NOT_FOUND }
+        '503':
+          $ref: '#/components/responses/DataUnavailable'
+components:
+  responses:
+    InvalidRequest:
+      description: 경로 또는 쿼리 매개변수가 유효하지 않습니다.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example: { type: 'about:blank', title: Bad Request, status: 400, code: INVALID_REQUEST }
+    DataUnavailable:
+      description: 조회할 저장 데이터가 준비되지 않았거나 저장소에 접근할 수 없습니다.
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example: { type: 'about:blank', title: Service Unavailable, status: 503, code: DATA_UNAVAILABLE }
+  schemas:
+    MarketSummary:
+      type: object
+      required: [generatedAt, kospi, kosdaq, usdKrw, goldFutures, bokBaseRate]
+      not:
+        properties:
+          kospi: { $ref: '#/components/schemas/UnavailableItem' }
+          kosdaq: { $ref: '#/components/schemas/UnavailableItem' }
+          usdKrw: { $ref: '#/components/schemas/UnavailableItem' }
+          goldFutures: { $ref: '#/components/schemas/UnavailableItem' }
+          bokBaseRate: { $ref: '#/components/schemas/UnavailableItem' }
+      properties:
+        generatedAt:
+          type: string
+          format: date-time
+          description: 응답 생성 시각입니다. 공표값의 기준일은 항목별 observationDate를 사용합니다.
+        kospi:
+          $ref: '#/components/schemas/MarketItem'
+          description: 코스피 일별 종가 (INDEX_POINTS, CLOSE)
+        kosdaq:
+          $ref: '#/components/schemas/MarketItem'
+          description: 코스닥 일별 종가 (INDEX_POINTS, CLOSE)
+        usdKrw:
+          $ref: '#/components/schemas/MarketItem'
+          description: 일별 원·달러 기준환율 (KRW_PER_USD, REFERENCE_RATE)
+        goldFutures:
+          description: COMEX GC 일별 정산가 (USD_PER_TROY_OUNCE, SETTLEMENT)
+          allOf:
+            - $ref: '#/components/schemas/MarketItem'
+            - if:
+                properties:
+                  dataStatus: { enum: [current, stale] }
+              then:
+                properties:
+                  observation:
+                    required: [contractMonth]
+        bokBaseRate:
+          $ref: '#/components/schemas/MarketItem'
+          description: 적용 중인 한국은행 기준금리 (PERCENT, POLICY_RATE)
+    UnavailableItem:
+      properties:
+        dataStatus: { const: unavailable }
+      required: [dataStatus]
+    MarketItem:
+      type: object
+      required: [dataStatus, observation]
+      properties:
+        dataStatus:
+          type: string
+          enum: [current, stale, unavailable]
+          description: current는 가장 최근 공표 예정분을 보유한 상태, stale은 예정분을 놓친 상태, unavailable은 저장값이 없는 상태입니다. 휴장일과 공표 전에는 직전 공표분이 current일 수 있습니다.
+        observation:
+          oneOf:
+            - $ref: '#/components/schemas/MarketObservation'
+            - type: 'null'
+      if:
+        properties:
+          dataStatus: { const: unavailable }
+      then:
+        properties:
+          observation: { type: 'null' }
+      else:
+        properties:
+          observation:
+            $ref: '#/components/schemas/MarketObservation'
+    MarketObservation:
+      type: object
+      required: [value, unit, observationDate, observationType, source]
+      properties:
+        value:
+          type: string
+          pattern: '^-?[0-9]+(\.[0-9]+)?$'
+          description: Java BigDecimal로 처리할 십진 문자열입니다.
+        unit:
+          type: string
+          enum: [INDEX_POINTS, KRW_PER_USD, USD_PER_TROY_OUNCE, PERCENT]
+        observationDate:
+          type: string
+          format: date
+          description: 공급자가 지정한 거래일 또는 통계 기준일입니다. 기준금리는 적용일입니다.
+        observationType:
+          type: string
+          enum: [CLOSE, REFERENCE_RATE, SETTLEMENT, POLICY_RATE]
+        source:
+          type: string
+          description: 원천 기관 또는 계약한 데이터 공급자의 표기명입니다.
+          minLength: 1
+        contractMonth:
+          type: string
+          pattern: '^[0-9]{4}-(0[1-9]|1[0-2])$'
+          description: 금 선물의 결제월입니다.
+    CorpCode:
+      type: string
+      pattern: '^[0-9]{8}$'
+      description: 앞자리 0을 유지하는 OpenDART 기업 고유번호입니다.
+    CompanySummary:
+      type: object
+      required: [corpCode, stockCode, nameKo, market]
+      properties:
+        corpCode:
+          $ref: '#/components/schemas/CorpCode'
+        stockCode:
+          type: string
+          pattern: '^[0-9]{6}$'
+        nameKo:
+          type: string
+        market:
+          type: string
+          enum: [KOSPI, KOSDAQ, KONEX]
+    Company:
+      allOf:
+        - $ref: '#/components/schemas/CompanySummary'
+        - type: object
+          required: [source, fetchedAt]
+          properties:
+            nameEn: { type: string }
+            industryCode: { type: string }
+            websiteUrl: { type: string, format: uri }
+            establishedOn: { type: string, format: date }
+            source: { const: OpenDART }
+            fetchedAt: { type: string, format: date-time }
+    CompanyPage:
+      type: object
+      required: [items, page, size, totalItems]
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanySummary'
+        page: { type: integer, minimum: 1, maximum: 10000 }
+        size: { type: integer, minimum: 1, maximum: 100 }
+        totalItems: { type: integer, minimum: 0 }
+    Problem:
+      type: object
+      required: [type, title, status, code]
+      properties:
+        type: { type: string, format: uri-reference }
+        title: { type: string }
+        status: { type: integer }
+        code: { type: string }
+        detail: { type: string }
+        instance: { type: string, format: uri-reference }

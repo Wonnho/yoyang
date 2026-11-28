@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-0" aria-label="주 메뉴">
+  <div class="container-fluid px-3 px-lg-4 py-1">
+  
+    {{! 모바일 메뉴 버튼 · mainNavbar를 열고 닫습니다. }}
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#mainNavbar"
+      aria-controls="mainNavbar"
+      aria-expanded="false"
+      aria-label="주 메뉴 열기 또는 닫기"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    {{! 주 메뉴 · 모바일에서는 로그인 아래 줄에 펼쳐집니다. }}
+    <div class="collapse navbar-collapse order-last order-lg-0" id="mainNavbar">
+      <ul class="navbar-nav gap-1 gap-md-3 gap-lg-4">
+        <li class="nav-item">
+          <a class="nav-link" href="/api/greetings">홈</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">드림센터소개</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about#caregivers">요양보호사 소개</a>
+        </li>
+
+        {{! 서비스 드롭다운 · 아래 목록에서 서비스 이름과 연결 주소를 수정합니다. }}
+        <li class="nav-item dropdown">
+          <button
+            class="nav-link dropdown-toggle border-0 bg-transparent"
+            id="servicesDropdown"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            서비스
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+            <li>
+              <a class="dropdown-item" href="/services/physical">신체활동 지원</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/services/nutrition">식사 및 영양관리</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/services/daily-living">가사 및 일상생활지원</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/services/companionship">정서지원 및 말벗</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/services/outings">병원동행 및 외출지원</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/long-term-care">장기요양등급 안내</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/directions">찾아오시는 길</a>
+        </li>
+      </ul>
+    </div>
+
+    {{! 계정 메뉴 · 오른쪽에 모아 배치합니다. }}
+    <div class="d-flex align-items-center gap-2 ms-auto flex-shrink-0">
+      <a class="btn btn-outline-secondary btn-sm" href="/login">로그인</a>
+      <a class="btn btn-outline-secondary btn-sm" href="/signup">회원가입</a>
+    </div>
+  </div>
+</nav>
