@@ -25,4 +25,14 @@ public class AboutController {
     public String caregivers() {
         return "caregivers";
     }
+
+    @GetMapping("/directions")
+    public String directions() {
+        return "directions";
+    }
+
+    @GetMapping("/long-term-care")
+    public String longTermCare() {
+        return "longTermCare";
+    }
 }

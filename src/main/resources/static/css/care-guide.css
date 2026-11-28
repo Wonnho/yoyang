@@ -1,0 +1,25 @@
+.care-guide { --line: #dce5dc; }
+.guide-heading { border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; }
+.guide-heading p:first-child { color: #536b5e; font-weight: 600; margin-bottom: .5rem; }
+.guide-heading h1 { font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; color: var(--forest); }
+.care-guide h2 { font-size: clamp(1.35rem, 2.5vw, 1.8rem); color: var(--forest); font-weight: 700; }
+.guide-pair, .guide-footer { display: grid; gap: 2rem; }
+.guide-pair, .guide-fees, .guide-footer { margin-top: clamp(2rem, 4vw, 3.5rem); }
+.guide-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: .75rem; }
+.care-guide table { width: 100%; font-variant-numeric: tabular-nums; }
+.care-guide th, .care-guide td { padding: .7rem 1rem; text-align: right; white-space: nowrap; }
+.care-guide th:first-child { text-align: left; }
+.care-guide thead { background: #eff5ed; color: var(--forest); }
+.care-guide tbody th { font-weight: 500; }
+.care-guide tbody tr + tr { border-top: 1px solid var(--line); }
+.guide-footer { padding-block: 2rem; border-block: 1px solid var(--line); }
+.care-guide a { color: var(--forest); text-underline-offset: .2em; }
+.care-guide footer { padding-top: 1rem; font-size: .9rem; }
+@media (min-width: 48rem) {
+  .guide-pair, .guide-footer { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .guide-pair > section { display: grid; grid-template-rows: subgrid; grid-row: span 3; gap: 0; align-content: start; }
+  .guide-pair .guide-scroll { align-self: start; }
+}
+@media (max-width: 36rem) {
+  .care-guide td, .care-guide th { padding: .65rem .45rem; font-size: .9375rem; }
+}

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="460" viewBox="0 0 640 460" role="img" aria-labelledby="title desc">
+<title id="title">정성드림방문요양센터 도보 약도</title>
+<desc id="desc">버스 정류장과 신이문역에서 한천로 석관중학교 방면으로 이동해 돌곶이로8길로 들어갑니다. 래미안아트리치 맞은편에 센터가 있습니다. 축척을 생략한 약도입니다.</desc>
+<rect width="640" height="460" rx="16" fill="#f5f5ed"/>
+<rect x="466" y="32" width="156" height="115" rx="14" fill="#dcead7"/>
+<rect x="20" y="220" width="265" height="124" rx="14" fill="#e7e2d8"/>
+<path d="M0 185H640 M425 0V460" stroke="#d6d5ca" stroke-width="54"/>
+<path d="M0 185H640 M425 0V460" stroke="white" stroke-width="50"/>
+<g font-family="Apple SD Gothic Neo,Malgun Gothic,sans-serif" fill="#314239" font-size="20">
+<text x="481" y="90">석관중학교</text><text x="42" y="284">래미안아트리치</text>
+<text x="247" y="169">돌곶이로8길</text><text x="442" y="248">한천로</text>
+<rect x="20" y="62" width="255" height="66" rx="12" fill="#255842"/>
+<text x="40" y="91" fill="white" font-weight="bold">정성드림방문요양센터</text><text x="40" y="116" fill="#e4f0df" font-size="17">돌곶이로8길 47 · 2층</text>
+<path d="M137 127v26" stroke="#255842" stroke-width="5"/><circle cx="137" cy="157" r="7" fill="#255842"/>
+<path d="M423 313V185H138v-18" fill="none" stroke="#286047" stroke-width="5" stroke-linejoin="round"/>
+<path d="m415 267 8-12 8 12 M343 178l-12 7 12 7 M218 178l-12 7 12 7" fill="none" stroke="#286047" stroke-width="4"/>
+<path d="M245 370l178-57 M532 370l-109-57" stroke="#537a81" stroke-width="4" stroke-dasharray="7 5"/>
+<path d="m339 334 12 1-7 9 M485 337l-12 1 5 10" fill="none" stroke="#537a81" stroke-width="3"/>
+<rect x="86" y="370" width="265" height="68" rx="10" fill="#fff" stroke="#9caea0"/>
+<text x="103" y="396" font-size="16">버스 · 08197</text><text x="103" y="422">석관동코오롱아파트</text>
+<rect x="401" y="370" width="219" height="68" rx="10" fill="#fff" stroke="#9caea0"/>
+<text x="417" y="396" font-size="16">지하철 · 1호선</text><text x="417" y="422">신이문역 1번 출구</text>
+</g></svg>

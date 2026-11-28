@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>찾아오시는 길 | 정성드림 방문요양센터</title>
+  <link rel="stylesheet" href="/vendor/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/about.css">
+  <script defer src="/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+  {{>layouts/header}}
+
+  <main class="about-page">
+    <h1 class="fw-bold mb-4">찾아오시는 길</h1>
+    <figure class="mb-4">
+      <img class="img-fluid d-block mx-auto" width="640" height="460" src="/images/directions/walking-guide.svg" alt="버스와 지하철에서 센터로 오는 방향을 표시한 약도. 아래에 경로별 설명이 있습니다.">
+      <figcaption class="text-secondary small mt-2 text-center">도보 진행 순서를 표시한 약도입니다. 점선은 출발지에서 한천로 방면, 실선 화살표는 센터로 향하는 길입니다. 거리와 축척은 생략했습니다.</figcaption>
+    </figure>
+      <section class="care-concerns mb-4">
+          <h2 class="h4 fw-bold">정성드림방문요양센터</h2>
+          <address class="fs-5 mb-2">서울특별시 성북구 돌곶이로8길 47, <strong>2층</strong></address>
+          <p>방문 문의 <a href="tel:0263969998">02-6396-9998</a></p>
+          <a class="btn btn-success" href="https://map.naver.com/p/entry/place/1491450668?c=15.00,0,0,0,dh">네이버 지도에서 길찾기</a>
+      </section>
+
+    <section class="care-scenes" aria-labelledby="transitTitle">
+      <h2 id="transitTitle" class="h3 fw-bold mb-4">대중교통으로 오시는 길</h2>
+      <div class="row row-cols-1 row-cols-md-2 g-3">
+        <div class="col"><section class="h-100 border rounded-3 p-3">
+          <h3 class="h5 fw-bold">버스 · 석관동코오롱아파트 하차</h3>
+          <p>145번, 1122번, 1218번이 정차하는 한천로쌍용아파트앞 방면 정류장(08197) 기준입니다.</p>
+          <p class="mb-0">정류장 → 한천로에서 석관중학교 방면으로 이동 → 돌곶이로8길의 래미안아트리치 방면으로 진입 → 아파트 맞은편 연두색 센터 간판 → 2층</p>
+        </section></div>
+        <div class="col"><section class="h-100 border rounded-3 p-3">
+          <h3 class="h5 fw-bold">지하철 · 1호선 신이문역 하차</h3>
+          <p>1번 출구에서 한천로·석관중학교 방면으로 걸어오세요.</p>
+          <p class="mb-0">신이문역 1번 출구 → 한천로 → 석관중학교 인근 돌곶이로8길 → 래미안아트리치를 따라 이동 → 아파트 맞은편 47번 건물 2층</p>
+        </section></div>
+      </div>
+    </section>
+
+      <section class="care-scenes">
+      <h2 class="h3 fw-bold mb-4">센터 외관과 내부</h2>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <figure class="col">
+          <div class="ratio ratio-4x3"><img class="object-fit-contain rounded-3 bg-light" src="/images/directions/exterior.webp" alt="갈색 벽돌 건물에 붙은 연두색 정성드림 방문요양센터 간판" loading="lazy"></div>
+          <figcaption class="pt-2">건물 밖에서 연두색 센터 간판을 확인한 뒤 2층으로 올라오세요.</figcaption>
+        </figure>
+        <figure class="col">
+          <div class="ratio ratio-4x3"><img class="object-fit-contain rounded-3 bg-light" src="/images/directions/interior.webp" alt="대기용 의자와 안내 자료가 놓인 센터 내부" loading="lazy"></div>
+          <figcaption class="pt-2">센터 안쪽에 대기용 의자와 방문요양 안내 자료가 마련되어 있습니다.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
